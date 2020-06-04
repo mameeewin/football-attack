@@ -6,17 +6,8 @@ namespace SpriteKind {
     export const TeamEnnemy = SpriteKind.create()
     export const Dead = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Catch, SpriteKind.Dead, function (sprite, otherSprite) {
-    game.over(false)
-})
-sprites.onOverlap(SpriteKind.TeamEnnemy, SpriteKind.Catch, function (sprite, otherSprite) {
-    otherSprite.setVelocity(Math.randomRange(50, 100), 100)
-    sprite.setVelocity(50, 0)
-    sprite.setFlag(SpriteFlag.BounceOnWall, true)
-    scene.cameraShake(4, 500)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Catch, function (sprite, otherSprite) {
-    otherSprite.setVelocity(Math.randomRange(50, 100), -100)
+    otherSprite.setVelocity(randint(50, 100), -100)
     scene.cameraShake(4, 500)
     music.powerUp.play()
     info.changeScoreBy(1)
@@ -129,16 +120,25 @@ e 4 f b b b b b b f 4 e
     false
     )
 })
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Catch, function (sprite, otherSprite) {
-    otherSprite.setVelocity(Math.randomRange(50, 100), 100)
-    music.powerDown.play()
+sprites.onOverlap(SpriteKind.Catch, SpriteKind.Dead, function (sprite, otherSprite) {
+    game.over(false)
+})
+sprites.onOverlap(SpriteKind.TeamEnnemy, SpriteKind.Catch, function (sprite, otherSprite) {
+    otherSprite.setVelocity(randint(50, 100), 100)
+    sprite.setVelocity(50, 0)
+    sprite.setFlag(SpriteFlag.BounceOnWall, true)
     scene.cameraShake(4, 500)
 })
 sprites.onOverlap(SpriteKind.Teammate, SpriteKind.Catch, function (sprite, otherSprite) {
-    otherSprite.setVelocity(Math.randomRange(50, 100), -100)
+    otherSprite.setVelocity(randint(50, 100), -100)
     sprite.setVelocity(50, 0)
     info.changeScoreBy(1)
     sprite.setFlag(SpriteFlag.BounceOnWall, true)
+    scene.cameraShake(4, 500)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Catch, function (sprite, otherSprite) {
+    otherSprite.setVelocity(randint(50, 100), 100)
+    music.powerDown.play()
     scene.cameraShake(4, 500)
 })
 storyboard.loaderBootSequence.register()
@@ -356,7 +356,7 @@ let Ball = sprites.create(img`
 . . . . . . b b b b . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Catch)
-Ball.setVelocity(Math.randomRange(50, 70), Math.randomRange(50, 70))
+Ball.setVelocity(randint(50, 70), randint(50, 70))
 Ball.setFlag(SpriteFlag.BounceOnWall, true)
 let EnemyFootBall = sprites.create(img`
 . . . . . . . . . . . . . . . 

@@ -1,5 +1,6 @@
 {
     "name": "Football {Attack}",
+    "description": "",
     "dependencies": {
         "device": "*",
         "animation": "*",
@@ -8,14 +9,16 @@
         "Color Fading": "github:jwunderl/pxt-color#v0.1.3",
         "storyboard": "*"
     },
-    "description": "",
     "files": [
         "main.blocks",
         "main.ts",
         "README.md"
     ],
-    "preferredEditor": "blocksprj",
     "testFiles": [
         "test.ts"
-    ]
+    ],
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
 }
